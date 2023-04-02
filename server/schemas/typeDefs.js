@@ -15,9 +15,16 @@ const typeDefs = gql`
         Link: String
         title: String
     }
-    type Query {
-        
+    type Auth {
+        token: ID!
     }
-
+    type Query {
+        me: User
+    }
+    type Mutation {
+        addUser(username: String!, email: String!, password: String!): Auth
+        login(email: String!, password: String!): Auth
+        saveBook
+    }
 `
 module.exports = typeDefs

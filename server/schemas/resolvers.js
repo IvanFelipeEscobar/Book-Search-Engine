@@ -1,15 +1,17 @@
 const { User } = require(`../models`)
+const {signToken} = require(`../utils/auth`)
 
 const resolvers = {
     Query: {
-        getSingleUser: async () => await User.findOne({
-            $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-          })
+       me: async (parent, args, context) => {
 
+       }
     },
     Mutation: {
-        createUser: {
-
+        createUser: async (parent, {username, email, password}) => {
+            const user = await User.create({username, email, password})
+            const token = signToken(user)
+            return {token, user}
         }
     }
 }
