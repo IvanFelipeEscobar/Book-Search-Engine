@@ -44,7 +44,7 @@ mutation Login($email: String!, $password: String!) {
   }
   `
   export const REMOVE_BOOK = gql `
-  mutation RemoveBook($bookId: String!) {
+  mutation RemoveBook($bookId: ID!) {
     removeBook(bookId: $bookId) {
       _id
       bookCount
