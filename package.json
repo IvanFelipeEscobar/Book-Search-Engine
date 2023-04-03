@@ -14,5 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
-  }
+  },
+  "homepage": "https://book-search-engine-graphqlmern.herokuapp.com/"
 }
