@@ -44,7 +44,7 @@ mutation login($email: String!, $password: String!) {
   `
   export const REMOVE_BOOK = gql `
   mutation removeBook($bookId: ID!) {
-    removeBook(bookID: $bookId){
+    removeBook(bookId: $bookId){
       _id
       email
       username
