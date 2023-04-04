@@ -1,5 +1,5 @@
 // see SignupForm.js for comments
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 // import { loginUser } from '../utils/API';
@@ -13,6 +13,12 @@ const LoginForm = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [login, {error}] = useMutation(LOGIN_USER)
 
+  useEffect(()=>{
+    error
+      ?setShowAlert(true)
+      :setShowAlert(false)
+  }, [error])
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
@@ -33,22 +39,11 @@ const LoginForm = () => {
         variables: {...userFormData}
       })
       Auth.login(data.login.token)
-      // const response = await loginUser(userFormData);
-
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user } = await response.json();
-      // console.log(user);
-      // Auth.login(token);
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
     }
 
     setUserFormData({
-      username: '',
       email: '',
       password: '',
     });
